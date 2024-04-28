@@ -1,1 +1,17 @@
-<p>model-and-color works!</p>
+<div class="p-2">
+  <h2>Step 1: Choose your Model and color</h2>
+  <div class="mt-2 d-flex">
+    <!--model select-->
+    <div>
+      <label for="modelSelect">Model:</label>
+      <select id="modelSelect" [(ngModel)]="carModel" (ngModelChange)="updateSelectedCarModel()">
+        <option disabled [ngValue]="undefined">Choose...</option>
+        @for (model of carModels; track model.code) {
+          <option [ngValue]="model">
+            {{ model.description }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+</div>
