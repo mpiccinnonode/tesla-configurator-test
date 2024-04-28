@@ -11,8 +11,12 @@ import { ConfigurationImageComponent } from '../configuration-image/configuratio
   styleUrl: './step-selector.component.scss',
 })
 export class StepSelectorComponent {
-  stepOneValid = computed(() => this.stepsValidationService.stepOneValid());
-  stepTwoValid = computed(() => this.stepsValidationService.stepTwoValid());
+  stepOneValid = computed<boolean>(() =>
+    this.stepsValidationService.stepOneValid(),
+  );
+  stepTwoValid = computed<boolean>(() =>
+    this.stepsValidationService.stepTwoValid(),
+  );
 
   constructor(private stepsValidationService: StepsValidationService) {}
 }

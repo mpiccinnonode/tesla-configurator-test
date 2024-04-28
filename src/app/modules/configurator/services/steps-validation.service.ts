@@ -5,12 +5,12 @@ import { SelectionService } from './selection.service';
   providedIn: 'root',
 })
 export class StepsValidationService {
-  stepOneValid = computed(() => {
+  stepOneValid = computed<boolean>(() => {
     const { carModel, color } = this.selectionService.currentSelection();
     return !!carModel && !!color;
   });
 
-  stepTwoValid = computed(() => {
+  stepTwoValid = computed<boolean>(() => {
     const { config } = this.selectionService.currentSelection();
     return !!config;
   });
