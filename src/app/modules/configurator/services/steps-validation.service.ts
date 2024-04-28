@@ -12,7 +12,7 @@ export class StepsValidationService {
 
   stepTwoValid = computed<boolean>(() => {
     const { config } = this.selectionService.currentSelection();
-    return !!config;
+    return this.stepOneValid() && !!config;
   });
 
   constructor(private selectionService: SelectionService) {}
