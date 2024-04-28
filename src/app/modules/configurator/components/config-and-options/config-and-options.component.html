@@ -19,6 +19,27 @@
       </select>
     </div>
   </div>
+  @if (config) {
+    <div class="mt-2">
+      <!--config infos-->
+      <span
+      >Range: {{ config.range }} miles - Max speed: {{ config.speed }} -
+        Price: {{ config.price | currency: "USD" }}</span
+      >
+    </div>
+  }
+  @if (configOptions()?.towHitch) {
+    <div class="mt-2 d-flex align-items-center">
+      <label for="includeTow">Tow Hitch?</label>
+      <input type="checkbox" id="includeTow" [(ngModel)]="towHitch" (ngModelChange)="updateTotalSelection()"/>
+    </div>
+  }
+  @if (configOptions()?.yoke) {
+    <div class="mt-2 d-flex align-items-center">
+      <label for="includeYoke">Yoke steering wheel?</label>
+      <input type="checkbox" id="includeYoke" [(ngModel)]="yoke" (ngModelChange)="updateTotalSelection()"/>
+    </div>
+  }
   <div class="mt-2">
     <configuration-image></configuration-image>
   </div>

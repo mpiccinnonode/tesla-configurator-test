@@ -12,7 +12,7 @@
       >
         <option disabled [ngValue]="undefined">Choose...</option>
         @for (model of carModels(); track model.code) {
-          <option [ngValue]="model" [selected]="model.code === carModel?.code">
+          <option [ngValue]="model">
             {{ model.description }}
           </option>
         }

@@ -7,11 +7,12 @@ import { ConfigOptions } from '../../models/config-options.model';
 import { FormsModule } from '@angular/forms';
 import { Config } from '../../models/config.model';
 import { SelectComparatorHelper } from '../../helpers/select-comparator.helper';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-config-and-options',
   standalone: true,
-  imports: [ConfigurationImageComponent, FormsModule],
+  imports: [ConfigurationImageComponent, FormsModule, CurrencyPipe],
   templateUrl: './config-and-options.component.html',
   styleUrl: './config-and-options.component.scss',
 })
