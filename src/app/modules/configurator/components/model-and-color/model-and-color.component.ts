@@ -1,23 +1,24 @@
-import { Component, computed, DestroyRef, OnInit } from '@angular/core';
+import { Component, computed, DestroyRef, OnInit, signal } from '@angular/core';
 import { ModelsProxyService } from '../../services/models-proxy.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CarModel } from '../../models/car-model.model';
 import { FormsModule } from '@angular/forms';
 import { SelectionService } from '../../services/selection.service';
 import { Color } from '../../models/color.model';
+import { ConfigurationImageComponent } from '../configuration-image/configuration-image.component';
 
 @Component({
   selector: 'app-model-and-color',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ConfigurationImageComponent],
   templateUrl: './model-and-color.component.html',
   styleUrl: './model-and-color.component.scss',
 })
 export class ModelAndColorComponent implements OnInit {
-  carModels: CarModel[] = [];
   carModel?: CarModel;
   color?: Color;
 
+  carModels = signal<CarModel[]>([]);
   colors = computed<Color[]>(() => this._selectedCarModel()?.colors ?? []);
 
   private _selectedCarModel = computed<CarModel | undefined>(() => {
@@ -56,6 +57,6 @@ export class ModelAndColorComponent implements OnInit {
     this.modelsProxyService
       .getAll()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((items) => (this.carModels = items));
+      .subscribe((items) => this.carModels.set(items));
   }
 }

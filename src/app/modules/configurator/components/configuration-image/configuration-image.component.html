@@ -1,0 +1,5 @@
+@if (carModel() && color()) {
+  <img class="h-100 w-100" [src]="imageSourceURI()" alt="configuration preview"/>
+} @else {
+  <span>Select car model and color</span>
+}
