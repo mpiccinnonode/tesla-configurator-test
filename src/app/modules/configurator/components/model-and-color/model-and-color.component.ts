@@ -18,12 +18,12 @@ export class ModelAndColorComponent implements OnInit {
   carModel?: CarModel;
   color?: Color;
 
-  selectedCarModel = computed<CarModel | undefined>(() => {
+  colors = computed<Color[]>(() => this._selectedCarModel()?.colors ?? []);
+
+  private _selectedCarModel = computed<CarModel | undefined>(() => {
     this.carModel = this.selectionService.currentSelection().carModel;
     return this.carModel;
   });
-
-  colors = computed<Color[]>(() => this.selectedCarModel()?.colors ?? []);
 
   constructor(
     private modelsProxyService: ModelsProxyService,
@@ -39,10 +39,10 @@ export class ModelAndColorComponent implements OnInit {
 
   updateSelectedCarModel(): void {
     this.color = undefined;
-    this.selectionService.currentSelection.update((value) => ({
+    this.selectionService.currentSelection.set({
       ...this.selectionService.defaultValue,
       carModel: this.carModel,
-    }));
+    });
   }
 
   updateSelectedColor(): void {
