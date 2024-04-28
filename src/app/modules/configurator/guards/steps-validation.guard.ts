@@ -17,3 +17,14 @@ export const stepOneValidationGuard: CanActivateFn = (
     stepsValidationService.stepOneValid() || router.parseUrl('configurator')
   );
 };
+
+export const stepTwoValidationGuard: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot,
+) => {
+  const stepsValidationService = inject(StepsValidationService);
+  const router = inject(Router);
+  return (
+    stepsValidationService.stepTwoValid() || router.parseUrl('configurator')
+  );
+};

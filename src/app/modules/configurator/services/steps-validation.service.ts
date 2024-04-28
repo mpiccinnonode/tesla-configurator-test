@@ -10,5 +10,10 @@ export class StepsValidationService {
     return !!carModel && !!color;
   });
 
+  stepTwoValid = computed(() => {
+    const { config } = this.selectionService.currentSelection();
+    return !!config;
+  });
+
   constructor(private selectionService: SelectionService) {}
 }

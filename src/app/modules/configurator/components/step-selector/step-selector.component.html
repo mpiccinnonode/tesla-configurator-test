@@ -2,7 +2,11 @@
   <div class="d-flex w-100">
     <button id="step1" class="w-100" routerLink="model">Step 1</button>
     <button id="step2" class="w-100" [disabled]="!stepOneValid()" routerLink="config">Step 2</button>
-    <button id="step3" class="w-100" disabled>Step 3</button>
+    <button id="step3" class="w-100" [disabled]="!stepTwoValid()" routerLink="summary">Step 3</button>
+  </div>
+  <router-outlet></router-outlet>
+  <!--configuration image-->
+  <div class="mt-2">
+    <configuration-image></configuration-image>
   </div>
 </div>
-<router-outlet></router-outlet>
