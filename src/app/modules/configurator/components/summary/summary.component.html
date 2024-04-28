@@ -1,1 +1,49 @@
-<p>summary works!</p>
+<div class="p-2">
+  <h2>Step 3: Summary</h2>
+  <h3 class="mt-2">
+    Your Tesla {{ currentSelection().carModel?.description }}
+  </h3>
+  <div class="mt-4 px-3 d-flex flex-column gap-2">
+    @if (currentSelection().config; as config) {
+      <div class="row">
+        <div class="col-4">
+          <span class="fw-bold">{{ config.description }}</span>
+        </div>
+        <div class="col-4">{{ config.price | currency: "USD" }}</div>
+      </div>
+      <span
+      >Range: {{ config.range }} miles - Max speed: {{ config.speed }}
+      </span>
+    }
+    @if (currentSelection().color; as color) {
+      <div class="row">
+        <div class="col-4">
+          <span class="fw-bold">{{ color.description }} Color</span>
+        </div>
+        <div class="col-4">{{ color.price | currency: "USD" }}</div>
+      </div>
+    }
+    @if (currentSelection().towHitch) {
+      <div class="row">
+        <div class="col-4">
+          <span class="fw-bold">Tow Hitch Package</span>
+        </div>
+        <div class="col-4">{{ optionalPrice | currency: "USD" }}</div>
+      </div>
+    }
+    @if (currentSelection().yoke) {
+      <div class="row">
+        <div class="col-4">
+          <span class="fw-bold">Yoke Steering Wheel</span>
+        </div>
+        <div class="col-4">{{ optionalPrice | currency: "USD" }}</div>
+      </div>
+    }
+    <div class="row">
+      <div class="col-4">
+        <span class="fw-bold">TOTAL PRICE</span>
+      </div>
+      <div class="col-4">{{ totalPrice() | currency: "USD" }}</div>
+    </div>
+  </div>
+</div>
