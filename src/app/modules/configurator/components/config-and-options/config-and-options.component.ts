@@ -39,12 +39,6 @@ export class ConfigAndOptionsComponent implements OnInit {
     this._fetchOptions();
   }
 
-  updateConfigSelection(): void {
-    this.towHitch = false;
-    this.yoke = false;
-    this.updateTotalSelection();
-  }
-
   updateTotalSelection(): void {
     this.selectionService.currentSelection.update((value) => ({
       ...value,

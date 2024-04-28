@@ -8,7 +8,7 @@
         id="configSelect"
         [(ngModel)]="config"
         [compareWith]="selectComparatorHelper.compareId"
-        (ngModelChange)="updateConfigSelection()"
+        (ngModelChange)="updateTotalSelection()"
       >
         <option disabled [ngValue]="undefined">Choose...</option>
         @for (config of configOptions()?.configs; track config.id) {
