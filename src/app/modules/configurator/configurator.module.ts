@@ -5,6 +5,7 @@ import { StepSelectorComponent } from './components/step-selector/step-selector.
 import { ModelAndColorComponent } from './components/model-and-color/model-and-color.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ModelsProxyService } from './services/models-proxy.service';
+import { ConfigOptionsProxyService } from './services/config-options-proxy.service';
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,6 @@ import { ModelsProxyService } from './services/models-proxy.service';
     ModelAndColorComponent,
     HttpClientModule,
   ],
-  providers: [HttpClient, ModelsProxyService],
+  providers: [HttpClient, ModelsProxyService, ConfigOptionsProxyService],
 })
 export class ConfiguratorModule {}
