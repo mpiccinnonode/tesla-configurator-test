@@ -4,11 +4,32 @@
     <!--model select-->
     <div>
       <label for="modelSelect">Model:</label>
-      <select id="modelSelect" [(ngModel)]="carModel" (ngModelChange)="updateSelectedCarModel()">
+      <select
+        id="modelSelect"
+        [(ngModel)]="carModel"
+        (ngModelChange)="updateSelectedCarModel()"
+      >
         <option disabled [ngValue]="undefined">Choose...</option>
         @for (model of carModels; track model.code) {
           <option [ngValue]="model">
             {{ model.description }}
+          </option>
+        }
+      </select>
+    </div>
+    <!--colors select-->
+    <div>
+      <label for="colorSelect">Color:</label>
+      <select
+        id="colorSelect"
+        [disabled]="!colors().length"
+        [(ngModel)]="color"
+        (ngModelChange)="updateSelectedColor()"
+      >
+        <option disabled [ngValue]="undefined">Choose...</option>
+        @for (color of colors(); track color.code) {
+          <option [ngValue]="color">
+            {{ color.description }}
           </option>
         }
       </select>

@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CarModel } from '../../models/car-model.model';
 import { FormsModule } from '@angular/forms';
 import { SelectionService } from '../../services/selection.service';
+import { Color } from '../../models/color.model';
 
 @Component({
   selector: 'app-model-and-color',
@@ -15,26 +16,39 @@ import { SelectionService } from '../../services/selection.service';
 export class ModelAndColorComponent implements OnInit {
   carModels: CarModel[] = [];
   carModel?: CarModel;
+  color?: Color;
 
   selectedCarModel = computed<CarModel | undefined>(() => {
     this.carModel = this.selectionService.currentSelection().carModel;
     return this.carModel;
   });
 
+  colors = computed<Color[]>(() => this.selectedCarModel()?.colors ?? []);
+
   constructor(
     private modelsProxyService: ModelsProxyService,
     private selectionService: SelectionService,
     private destroyRef: DestroyRef,
-  ) {}
+  ) {
+    this.color = this.selectionService.currentSelection()?.color;
+  }
 
   ngOnInit(): void {
     this._fetchModels();
   }
 
   updateSelectedCarModel(): void {
+    this.color = undefined;
+    this.selectionService.currentSelection.update((value) => ({
+      ...this.selectionService.defaultValue,
+      carModel: this.carModel,
+    }));
+  }
+
+  updateSelectedColor(): void {
     this.selectionService.currentSelection.update((value) => ({
       ...value,
-      carModel: this.carModel,
+      color: this.color,
     }));
   }
 

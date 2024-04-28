@@ -5,12 +5,12 @@ import { Selection } from '../models/selection.model';
   providedIn: 'root',
 })
 export class SelectionService {
-  private _defaultValue: Selection = {
+  defaultValue: Selection = {
     carModel: undefined,
     color: undefined,
   };
 
-  currentSelection = signal<Selection>({ ...this._defaultValue });
+  currentSelection = signal<Selection>({ ...this.defaultValue });
 
   constructor() {}
 }
