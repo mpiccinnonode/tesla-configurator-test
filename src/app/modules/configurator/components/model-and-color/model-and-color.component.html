@@ -7,11 +7,12 @@
       <select
         id="modelSelect"
         [(ngModel)]="carModel"
+        [compareWith]="selectComparatorHelper.compareCode"
         (ngModelChange)="updateSelectedCarModel()"
       >
         <option disabled [ngValue]="undefined">Choose...</option>
         @for (model of carModels(); track model.code) {
-          <option [ngValue]="model">
+          <option [ngValue]="model" [selected]="model.code === carModel?.code">
             {{ model.description }}
           </option>
         }
@@ -24,6 +25,7 @@
         id="colorSelect"
         [disabled]="!colors().length"
         [(ngModel)]="color"
+        [compareWith]="selectComparatorHelper.compareCode"
         (ngModelChange)="updateSelectedColor()"
       >
         <option disabled [ngValue]="undefined">Choose...</option>

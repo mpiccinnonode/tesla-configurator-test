@@ -9,8 +9,12 @@ export const routes: Routes = [
       ),
   },
   {
-    path: '**',
+    path: '',
     redirectTo: 'configurator',
     pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: 'configurator',
   },
 ];

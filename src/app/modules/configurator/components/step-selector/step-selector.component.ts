@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { StepsValidationService } from '../../services/steps-validation.service';
 
 @Component({
   selector: 'app-step-selector',
@@ -8,4 +9,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './step-selector.component.html',
   styleUrl: './step-selector.component.scss',
 })
-export class StepSelectorComponent {}
+export class StepSelectorComponent {
+  stepOneValid = computed(() => this.stepsValidationService.stepOneValid());
+
+  constructor(private stepsValidationService: StepsValidationService) {}
+}

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectionService } from '../../services/selection.service';
 import { Color } from '../../models/color.model';
 import { ConfigurationImageComponent } from '../configuration-image/configuration-image.component';
+import { SelectComparatorHelper } from '../../helpers/select-comparator.helper';
 
 @Component({
   selector: 'app-model-and-color',
@@ -19,18 +20,18 @@ export class ModelAndColorComponent implements OnInit {
   color?: Color;
 
   carModels = signal<CarModel[]>([]);
-  colors = computed<Color[]>(() => this._selectedCarModel()?.colors ?? []);
+  colors = computed<Color[]>(
+    () => this.selectionService.currentSelection()?.carModel?.colors ?? [],
+  );
 
-  private _selectedCarModel = computed<CarModel | undefined>(() => {
-    this.carModel = this.selectionService.currentSelection().carModel;
-    return this.carModel;
-  });
+  protected readonly selectComparatorHelper = SelectComparatorHelper;
 
   constructor(
     private modelsProxyService: ModelsProxyService,
     private selectionService: SelectionService,
     private destroyRef: DestroyRef,
   ) {
+    this.carModel = this.selectionService.currentSelection()?.carModel;
     this.color = this.selectionService.currentSelection()?.color;
   }
 
